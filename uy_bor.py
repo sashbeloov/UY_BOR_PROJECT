@@ -542,7 +542,7 @@ internets = []
 playgrounds = []
 sewerages = []
 bathrooms = []
-video_monitor = []
+video_monitors = []
 parking_spaces = []
 air_conditions = []
 furnitures = []
@@ -700,7 +700,7 @@ for i in range(98):
             video_monitor = 1
         except:
             video_monitor = 0
-        bathrooms.append(video_monitor)
+        video_monitors.append(video_monitor)
         print(f"Video_monitor: {video_monitor}")
 
         try:
@@ -753,7 +753,7 @@ df = pd.DataFrame({
     "furnitures":furnitures
 })
 
-df.to_csv("uy_bor_data.csv")
+df.to_csv("uy_bor_data.csv", index=False, encoding='utf-8-sig')
 
 
 
