@@ -584,7 +584,7 @@ for i in range(98):
                                                  "and contains(text(), 'Комнат')]"
                                                  "/following-sibling::div").text
         except:
-            room = 0
+            room = 'room'
         rooms.append(room)
         print(f"Room: {room}")
 
@@ -602,7 +602,7 @@ for i in range(98):
                                                  "and contains(text(), 'Этаж')]"
                                                  "/following-sibling::div").text
         except:
-            floor = 0
+            floor = "floor"
         floors.append(floor)
         print(f"Floor: {floor}")
 
@@ -612,7 +612,7 @@ for i in range(98):
                                              "and contains(text(), 'Ремонт')]"
                                              "/following-sibling::div").text
         except:
-            renovation = 0
+            renovation = "renovation"
         renovations.append(renovation)
         print(f"Renovation: {renovation}")
 
@@ -622,7 +622,7 @@ for i in range(98):
                                            "and contains(text(), 'Материал')]"
                                            "/following-sibling::div").text
         except:
-            material = 0
+            material = 'material'
         materials.append(material)
         print(f"Material: {material}")
 
@@ -645,115 +645,108 @@ for i in range(98):
         try:
             lift = driver.find_element(By.XPATH,
                                        "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Лифт')]").text
-            lift = 1
         except:
             print('except qismi!!!!!!!!!!!!!1')
             try:
                 if int(floor.split('/')[1]) > 5:
                     lift = 1
                 else:
-                    lift = 0
+                    lift = "no lift"
             except:
-                lift = 0
+                lift = "no lift"
         lifts.append(lift)
         print(f"Lifts: {lift}")
 
         try:
             internet = driver.find_element(By.XPATH,
                                            "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Интернет')]").text
-            internet = 1
         except:
-            internet = 0
+            internet = "internet"
         internets.append(internet)
         print(f"Internet: {internet}")
 
         try:
             playground = driver.find_element(By.XPATH,
                                              "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Детская площадка')]").text
-            playground = 1
         except:
-            playground = 0
+            playground = 'playground'
         playgrounds.append(playground)
         print(f"Playground: {playground}")
 
         try:
             sewerage = driver.find_element(By.XPATH,
                                            "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Канализация')]").text
-            sewerage = 1
         except:
-            sewerage = 0
+            sewerage = 'sewerage'
         sewerages.append(sewerage)
         print(f"Sewerage: {sewerage}")
 
         try:
             bathroom = driver.find_element(By.XPATH,
                                            "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Санузел раздельный')]").text
-            bathroom = 1
         except:
-            bathroom = 0
+            bathroom = "bathroom"
         bathrooms.append(bathroom)
         print(f"Bathroom: {bathroom}")
 
         try:
             video_monitor = driver.find_element(By.XPATH,
                                                 "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Видеонаблюдение')]").text
-            video_monitor = 1
         except:
-            video_monitor = 0
+            video_monitor = "video_monitor"
         video_monitors.append(video_monitor)
         print(f"Video_monitor: {video_monitor}")
 
         try:
             parking_space = driver.find_element(By.XPATH,
                                                 "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Парковочное место')]").text
-            parking_space = 1
         except:
-            parking_space = 0
+            parking_space = 'parking_space'
         parking_spaces.append(parking_space)
         print(f"Parking_space: {parking_space}")
 
         try:
             air_condition = driver.find_element(By.XPATH,
                                                 "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Кондиционер')]").text
-            air_condition = 1
         except:
-            air_condition = 0
+            air_condition = "air_condition"
         air_conditions.append(air_condition)
         print(f"Air condition: {air_condition}")
 
         try:
             furniture = driver.find_element(By.XPATH,
                                             "//div[@class='MuiTypography-root MuiTypography-body3 mui-style-xckitu' and contains(text(), 'Мебель')]").text
-            furniture = 1
         except:
-            furniture = 0
+            furniture = "furniture"
         furnitures.append(furniture)
         print(f"Furniture: {furniture}")
         counter += 1
-        print('\n\n')
+        print(f"<--------------------------->\n")
+
+
 
 df = pd.DataFrame({
-    "titles":titles,
-    "rooms":rooms,
-    "areas":areas,
-    "floors":floors,
-    "renovations":renovations,
-    "materials":materials,
-    "prices":prices,
-    "addresses":addresses,
-    "lifts":lifts,
-    "securities":securities,
-    "internets":internets,
-    "playgrounds":playgrounds,
-    "sewerages":sewerages,
-    "bathrooms":bathrooms,
-    "video_monitor":video_monitor,
-    "parking_spaces":parking_spaces,
-    "air_conditions":air_conditions,
-    "furnitures":furnitures
+    "titles":[titles],
+    "rooms":[rooms],
+    "areas":[areas],
+    "floors":[floors],
+    "renovations":[renovations],
+    "materials":[materials],
+    "prices":[prices],
+    "addresses":[addresses],
+    "lifts":[lifts],
+    "securities":[securities],
+    "internets":[internets],
+    "playgrounds":[playgrounds],
+    "sewerages":[sewerages],
+    "bathrooms":[bathrooms],
+    "video_monitor":[video_monitors],
+    "parking_spaces":[parking_spaces],
+    "air_conditions":[air_conditions],
+    "furnitures":[furnitures],
 })
 
-df.to_csv("uy_bor_data.csv", index=False, encoding='utf-8-sig')
+df.to_csv("uy_bor_data.csv", index=False)
 
 
 
